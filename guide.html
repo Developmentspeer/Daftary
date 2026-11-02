@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دليل الإعداد — دفتر المشتريات</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--bg:#EEF3F1;--surface:#fff;--ink:#14211F;--muted:#5A6B67;--line:#D3DEDA;--brand:#0E5A54;--soft:#D8EBE7;--brass:#9C6A16;--warn-bg:#FCEDD3;--warn:#8A4E00}
+@media (prefers-color-scheme:dark){:root{--bg:#0D1413;--surface:#152120;--ink:#E5EEEB;--muted:#93A6A1;--line:#283836;--brand:#4DB0A5;--soft:#173936;--brass:#D9A84F;--warn-bg:#3A2A10;--warn:#F0B25A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 "IBM Plex Sans Arabic",Tahoma,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+header{display:flex;gap:14px;align-items:center;margin-bottom:8px}
+header img{width:56px;height:56px;border-radius:14px}
+h1{font:700 28px/1.3 "Noto Naskh Arabic",serif;margin:0}
+.lead{color:var(--muted);margin:6px 0 22px}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:22px}
+.toc ol{margin:0;padding-inline-start:20px}
+.toc a{color:var(--brand);text-decoration:none;font-weight:600}
+section{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:16px}
+h2{font:700 21px/1.4 "Noto Naskh Arabic",serif;margin:0 0 6px;display:flex;gap:10px;align-items:center}
+h2 .n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font:700 15px "IBM Plex Sans Arabic",sans-serif}
+.time{color:var(--muted);font-size:14px;margin:0 0 10px}
+ol.steps{padding-inline-start:22px;margin:8px 0}
+ol.steps li{margin-bottom:8px}
+b.ui{background:var(--soft);color:var(--brand);padding:1px 7px;border-radius:6px;font-weight:600;white-space:nowrap}
+code,pre{font-family:ui-monospace,Menlo,Consolas,monospace;direction:ltr;text-align:left}
+code{background:var(--soft);padding:1px 6px;border-radius:5px;font-size:14px}
+pre{background:#0F1B1A;color:#D7E7E3;padding:14px;border-radius:12px;overflow-x:auto;font-size:13.5px;line-height:1.6;margin:8px 0}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:12px;padding:10px 14px;margin:10px 0;font-size:15px}
+.tip{border-inline-start:4px solid var(--brass);padding:4px 12px;margin:10px 0;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:start;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+a{color:var(--brand)}
+.copy{margin-top:6px;border:1px solid var(--line);background:var(--surface);color:var(--brand);border-radius:8px;padding:6px 12px;font:600 14px inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><img src="icons/icon-192.png" alt=""><div><h1>دليل إعداد دفتر المشتريات</h1></div></header>
+<p class="lead">نسخة مستقلة تعمل خارج موقع Claude، بدون إنترنت، على الكمبيوتر والآيفون والأندرويد، وتتزامن تلقائيًا بين أجهزتك عبر حساب مجاني خاص بك. الإعداد مرة واحدة فقط، ويستغرق نحو عشرين دقيقة.</p>
+
+<div class="toc"><b>الخطوات</b><ol>
+<li><a href="#s1">إنشاء حساب المزامنة في Firebase</a></li>
+<li><a href="#s2">رفع البرنامج على رابط خاص بك</a></li>
+<li><a href="#s3">السماح للرابط باستخدام الحساب</a></li>
+<li><a href="#s4">التشغيل على الكمبيوتر وتسجيل الدخول</a></li>
+<li><a href="#s5">نقل بياناتك الحالية من نسخة Claude</a></li>
+<li><a href="#s6">التثبيت على الآيفون</a></li>
+<li><a href="#s7">التثبيت على الأندرويد</a></li>
+<li><a href="#s8">النسخ الاحتياطي والاسترجاع</a></li>
+<li><a href="#s9">أسئلة شائعة</a></li>
+</ol></div>
+
+<section id="s1"><h2><span class="n">1</span>إنشاء حساب المزامنة في Firebase</h2>
+<p class="time">مرة واحدة · نحو 10 دقائق · من الكمبيوتر</p>
+<p>Firebase خدمة من Google تحفظ بياناتك وتزامنها بين أجهزتك. الحساب ملكك أنت، ولا يطّلع عليه أحد غيرك.</p>
+<ol class="steps">
+<li>افتح <a href="https://console.firebase.google.com" target="_blank" rel="noopener">console.firebase.google.com</a> وسجّل الدخول بحساب Google (Gmail).</li>
+<li>اضغط <b class="ui">Create a project</b> (إنشاء مشروع)، واكتب اسمًا مثل <code>daftar</code>. يمكنك إيقاف Google Analytics فهو غير مطلوب. ثم <b class="ui">Create project</b>.</li>
+<li>من القائمة الجانبية: <b class="ui">Build</b> ← <b class="ui">Authentication</b> ← <b class="ui">Get started</b>. في تبويب <b class="ui">Sign-in method</b> اختر <b class="ui">Email/Password</b>، فعّل الخيار الأول، ثم <b class="ui">Save</b>.</li>
+<li>من القائمة: <b class="ui">Build</b> ← <b class="ui">Firestore Database</b> ← <b class="ui">Create database</b>. اختر الموقع <code>me-central2 (Dammam)</code> إن ظهر لك، أو أي موقع قريب. اختر <b class="ui">Start in production mode</b> ثم <b class="ui">Create</b>.</li>
+<li>في صفحة Firestore افتح تبويب <b class="ui">Rules</b>، امسح الموجود والصق القواعد التالية، ثم اضغط <b class="ui">Publish</b>. هذه القواعد تجعل كل حساب يرى بياناته فقط:
+<pre id="rules">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null &amp;&amp; request.auth.uid == uid;
+    }
+  }
+}</pre><button class="copy" data-copy="rules">نسخ القواعد</button></li>
+<li>اضغط رمز الترس ⚙️ بجانب <b class="ui">Project Overview</b> ← <b class="ui">Project settings</b>. في أسفل الصفحة تحت <b class="ui">Your apps</b> اضغط رمز الويب <code>&lt;/&gt;</code>، اكتب اسمًا مثل <code>daftar-web</code>، ولا تفعّل Hosting، ثم <b class="ui">Register app</b>.</li>
+<li>سيظهر لك نص يبدأ بـ <code>const firebaseConfig = {</code>. انسخه كاملًا واحتفظ به، ستلصقه في البرنامج في الخطوة 4.</li>
+</ol>
+<div class="tip">النص الذي نسخته ليس كلمة سر. هو عنوان حسابك فقط، والحماية تأتي من القواعد ومن تسجيل الدخول بكلمة مرورك.</div>
+</section>
+
+<section id="s2"><h2><span class="n">2</span>رفع البرنامج على رابط خاص بك</h2>
+<p class="time">مرة واحدة · نحو 5 دقائق</p>
+<p>الآيفون لا يشغّل البرنامج من ملف محفوظ، فيحتاج أن يُفتح من رابط مرة واحدة ثم يعمل بعدها بدون إنترنت. بياناتك لا تُرفع إلى هذا الرابط. الرابط يحمل ملفات البرنامج فقط.</p>
+<p><b>الطريقة الأسهل:</b> اطلب من Claude: «ارفع دفتر المشتريات على GitHub Pages». حسابك في GitHub مربوط، فيرفعه لك ويعطيك الرابط.</p>
+<p><b>أو بنفسك:</b></p>
+<ol class="steps">
+<li>فك ضغط ملف البرنامج على الكمبيوتر.</li>
+<li>افتح <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>، اكتب اسم المستودع <code>daftar</code>، واجعله <b class="ui">Public</b>، ثم <b class="ui">Create repository</b>.</li>
+<li>اضغط <b class="ui">uploading an existing file</b>، واسحب كل الملفات والمجلدات الموجودة داخل المجلد (وليس المجلد نفسه)، ثم <b class="ui">Commit changes</b>.</li>
+<li>من <b class="ui">Settings</b> ← <b class="ui">Pages</b>: اختر <b class="ui">Deploy from a branch</b>، والفرع <code>main</code> والمجلد <code>/ (root)</code>، ثم <b class="ui">Save</b>.</li>
+<li>بعد دقيقة أو دقيقتين يظهر الرابط بالشكل: <code>https://اسمك.github.io/daftar/</code></li>
+</ol>
+<div class="tip">يمكن أيضًا استخدام Netlify أو Cloudflare Pages أو Firebase Hosting، فكلها مجانية. المهم أن يكون الرابط <code>https</code>.</div>
+</section>
+
+<section id="s3"><h2><span class="n">3</span>السماح للرابط باستخدام الحساب</h2>
+<ol class="steps">
+<li>في Firebase: <b class="ui">Authentication</b> ← تبويب <b class="ui">Settings</b> ← <b class="ui">Authorized domains</b> ← <b class="ui">Add domain</b>.</li>
+<li>اكتب النطاق فقط، دون https ودون اسم المجلد، مثل <code>اسمك.github.io</code>، ثم <b class="ui">Add</b>.</li>
+</ol>
+</section>
+
+<section id="s4"><h2><span class="n">4</span>التشغيل على الكمبيوتر وتسجيل الدخول</h2>
+<ol class="steps">
+<li>افتح الرابط في <b>Chrome</b> أو <b>Edge</b>. لتثبيته كبرنامج له أيقونة: اضغط رمز التثبيت في شريط العنوان، أو القائمة ⋮ ← <b class="ui">تثبيت دفتر المشتريات</b>.</li>
+<li>في البرنامج: <b class="ui">الإعدادات</b> ← <b class="ui">المزامنة بين أجهزتك</b> ← <b class="ui">إعداد المزامنة</b>، والصق نص <code>firebaseConfig</code> من الخطوة 1، ثم <b class="ui">حفظ ومتابعة</b>.</li>
+<li>اكتب بريدك وكلمة مرور جديدة، واضغط <b class="ui">إنشاء حساب</b>. هذا يكون مرة واحدة فقط. بعدها تستخدم <b class="ui">دخول</b> على أي جهاز.</li>
+<li>يظهر «✓ متزامن مع حسابك»، والمزامنة تعمل.</li>
+</ol>
+<div class="note">احفظ البريد وكلمة المرور في مكان آمن. ستحتاجهما على كل جهاز، ويمكن تغيير كلمة المرور من «نسيت كلمة المرور».</div>
+</section>
+
+<section id="s5"><h2><span class="n">5</span>نقل بياناتك الحالية من نسخة Claude</h2>
+<ol class="steps">
+<li>افتح دفتر المشتريات في Claude ← <b class="ui">الإعدادات</b> ← <b class="ui">البيانات والنسخ الاحتياطي</b> ← <b class="ui">نسخة كاملة مع المرفقات</b>، واحفظ ملف ZIP.</li>
+<li>في البرنامج الجديد على الكمبيوتر، وبعد تسجيل الدخول: <b class="ui">الإعدادات</b> ← <b class="ui">استعادة نسخة</b> ← اختر ملف ZIP كما هو دون فك ضغطه ← <b class="ui">دمج مع بياناتي الحالية</b>.</li>
+<li>تُرفع كل المشاريع والعمليات والصور والفواتير إلى حسابك، وتظهر على كل أجهزتك.</li>
+</ol>
+</section>
+
+<section id="s6"><h2><span class="n">6</span>التثبيت على الآيفون</h2>
+<ol class="steps">
+<li>على الكمبيوتر: <b class="ui">الإعدادات</b> ← <b class="ui">رابط إعداد جهاز آخر</b>، وأرسل الرابط إلى نفسك عبر واتساب أو البريد.</li>
+<li>على الآيفون: افتح الرابط في <b>Safari</b>. إن فُتح داخل واتساب، اضغط رمز البوصلة أو «فتح في Safari».</li>
+<li>اضغط زر المشاركة <b class="ui">⬆︎</b> ← <b class="ui">إضافة إلى الشاشة الرئيسية</b> ← <b class="ui">إضافة</b>.</li>
+<li>افتح البرنامج من أيقونته الجديدة ← <b class="ui">الإعدادات</b>. إن طُلب منك الإعداد، افتح رابط الإعداد مرة أخرى من داخل البرنامج، أو الصق نص الإعداد. ثم اضغط <b class="ui">دخول</b> بنفس البريد وكلمة المرور.</li>
+<li>تظهر بياناتك كلها. من الآن يعمل البرنامج بدون إنترنت، وتتزامن التغييرات تلقائيًا عند الاتصال.</li>
+</ol>
+<div class="note">مهم: استخدم البرنامج دائمًا من أيقونة الشاشة الرئيسية، لا من Safari، لأن الآيفون يحفظ بيانات الأيقونة بشكل دائم.</div>
+</section>
+
+<section id="s7"><h2><span class="n">7</span>التثبيت على الأندرويد</h2>
+<ol class="steps">
+<li>افتح الرابط في <b>Chrome</b>.</li>
+<li>القائمة ⋮ ← <b class="ui">تثبيت التطبيق</b> أو <b class="ui">إضافة إلى الشاشة الرئيسية</b>.</li>
+<li>افتحه من الأيقونة ← <b class="ui">الإعدادات</b> ← سجّل الدخول بنفس الحساب.</li>
+</ol>
+</section>
+
+<section id="s8"><h2><span class="n">8</span>النسخ الاحتياطي والاسترجاع</h2>
+<p>إضافة إلى المزامنة، خذ نسخة كاملة بين حين وآخر واحفظها في مكان تختاره:</p>
+<ol class="steps">
+<li><b class="ui">الإعدادات</b> ← <b class="ui">نسخة كاملة مع المرفقات</b>.</li>
+<li>على الآيفون: <b class="ui">حفظ في الملفات أو إرسال</b> ← <b class="ui">حفظ في الملفات</b>، واختر iCloud Drive أو أي مجلد آخر.</li>
+<li>على الكمبيوتر: <b class="ui">حفظ في مكان أختاره</b>، واختر المجلد.</li>
+</ol>
+<p>الملف يحتوي على كل البيانات وكل الصور والفواتير والسندات، في مجلد لكل مشروع، مع ملف Excel. يمكن فتحه وتصفحه مباشرة، ويمكن استرجاعه في أي وقت من <b class="ui">استعادة نسخة</b>. يذكّرك البرنامج إذا طالت المدة منذ آخر نسخة.</p>
+</section>
+
+<section id="s9"><h2><span class="n">9</span>أسئلة شائعة</h2>
+<table>
+<tr><th>هل يعمل بدون إنترنت؟</th><td>نعم، بالكامل: الإدخال والتعديل والمرفقات والتقارير وExcel. ترفع التغييرات تلقائيًا عند عودة الاتصال، وتظهر حالة المزامنة في الإعدادات.</td></tr>
+<tr><th>هل هو مجاني؟</th><td>نعم. الخطة المجانية في Firebase تكفي لاستخدام شخصي واسع: 1 جيجابايت من البيانات، أي آلاف الصور والفواتير. لا يلزم إدخال بطاقة.</td></tr>
+<tr><th>من يرى بياناتي؟</th><td>أنت فقط. البيانات في حسابك على Firebase، وتحميها كلمة مرورك والقواعد التي أضفتها في الخطوة 1.</td></tr>
+<tr><th>عدّلت على جهازين بدون إنترنت</th><td>تُحفظ تعديلات الجهازين. إذا عُدّلت نفس العملية على الجهازين، يُعتمد آخر تعديل يصل.</td></tr>
+<tr><th>حذفت التطبيق من الجوال</th><td>بياناتك محفوظة في حسابك. ثبّته مرة أخرى وسجّل الدخول فتعود كما هي.</td></tr>
+<tr><th>بدون حساب مزامنة؟</th><td>يعمل البرنامج على الجهاز وحده، وتُحفظ البيانات عليه فقط. في هذه الحالة انقل البيانات بين الأجهزة بملف «النسخة الكاملة».</td></tr>
+<tr><th>تشغيله من ملف على الكمبيوتر</th><td>يمكن فتح <code>index.html</code> مباشرة للعمل بدون مزامنة. أما المزامنة فتحتاج فتحه من الرابط.</td></tr>
+<tr><th>تحديث البرنامج</th><td>عند رفع إصدار جديد على نفس الرابط، يتحدّث البرنامج تلقائيًا في الفتح التالي، دون أن تتأثر بياناتك.</td></tr>
+</table>
+</section>
+</div>
+<script>
+document.addEventListener('click', e => { const b = e.target.closest('[data-copy]'); if (!b) return; const t = document.getElementById(b.dataset.copy).textContent; navigator.clipboard.writeText(t).then(() => { b.textContent = '✓ نُسخت'; setTimeout(() => b.textContent = 'نسخ القواعد', 1800); }); });
+</script>
+</body>
+</html>
